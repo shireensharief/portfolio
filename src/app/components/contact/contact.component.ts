@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Inject, NgZone, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TiltDirective } from '../../directives/tilt.directive';
+import emailjs from '@emailjs/browser';
 
 @Component({
   selector: 'app-contact',
@@ -24,12 +25,52 @@ export class ContactComponent {
   ];
 
   submitted = false;
+  sending = false;
+  error = false;
+
+  private serviceId = 'service_8eomnln';
+  private templateId = 'template_23fl8zv';
+  private publicKey = 'i0lobtROg7J4huwCs';
+  private isBrowser: boolean;
+
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private ngZone: NgZone
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
 
   onSubmit(): void {
-    this.submitted = true;
-    setTimeout(() => {
-      this.submitted = false;
-      this.formData = { name: '', email: '', subject: '', message: '' };
-    }, 3000);
+    if (!this.isBrowser || this.sending) return;
+
+    this.sending = true;
+    this.error = false;
+
+    const templateParams = {
+      name: this.formData.name,
+      email: this.formData.email,
+      title: this.formData.subject,
+      message: this.formData.message,
+    };
+
+    emailjs.send(this.serviceId, this.templateId, templateParams, this.publicKey)
+      .then(() => {
+        this.ngZone.run(() => {
+          this.sending = false;
+          this.submitted = true;
+          setTimeout(() => {
+            this.submitted = false;
+            this.formData = { name: '', email: '', subject: '', message: '' };
+          }, 3000);
+        });
+      })
+      .catch((err) => {
+        console.error('EmailJS error:', err);
+        this.ngZone.run(() => {
+          this.sending = false;
+          this.error = true;
+          setTimeout(() => this.error = false, 4000);
+        });
+      });
   }
 }
