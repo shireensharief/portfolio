@@ -1,0 +1,37 @@
+<nav class="navbar" [class.scrolled]="isScrolled">
+  <div class="navbar-inner">
+    <a class="logo" (click)="scrollToSection('home')">
+      <img src="assets/images/shireen-logo.svg" alt="Shireen H Logo" class="logo-img" />
+    </a>
+
+    <button
+      class="hamburger"
+      [class.active]="isMobileMenuOpen"
+      (click)="toggleMobileMenu()"
+      aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="nav-links" [class.open]="isMobileMenuOpen">
+      @for (link of navLinks; track link.sectionId) {
+        @if (link.sectionId === 'contact') {
+          <a
+            class="nav-link contact-btn"
+            [class.active]="activeSection === link.sectionId"
+            (click)="scrollToSection(link.sectionId)">
+            {{ link.label }}
+          </a>
+        } @else {
+          <a
+            class="nav-link"
+            [class.active]="activeSection === link.sectionId"
+            (click)="scrollToSection(link.sectionId)">
+            {{ link.label }}
+          </a>
+        }
+      }
+    </div>
+  </div>
+</nav>

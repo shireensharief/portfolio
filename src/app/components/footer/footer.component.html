@@ -1,0 +1,48 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="logo-badge">SH</span>
+          <span class="logo-text">SHIREEN<span class="highlight">H</span></span>
+        </div>
+        <p class="footer-desc">
+          UI/UX Designer & UI Developer bridging design and code to create
+          responsive, user-centric digital products. Let's build something great together.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <h4 class="footer-title">Quick Links</h4>
+        <ul>
+          @for (link of quickLinks; track link) {
+            <li>
+              <a (click)="scrollToSection(link.toLowerCase())">{{ link }}</a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div class="footer-social">
+        <h4 class="footer-title">Connect</h4>
+        <div class="social-list">
+          @for (s of socials; track s) {
+            <a class="social-link">
+              <span class="social-initial">{{ s.charAt(0) }}</span>
+              {{ s }}
+            </a>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {{ currentYear }} Shireen H. All rights reserved.</p>
+      <button class="back-to-top" (click)="scrollToTop()" aria-label="Back to top">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 15l-6-6-6 6"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</footer>

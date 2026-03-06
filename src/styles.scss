@@ -1,0 +1,216 @@
+// ============================================
+// PORTFOLIO - Global Styles
+// ============================================
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/assets/fonts/Poppins-Regular.woff2') format('woff2'),
+       url('/assets/fonts/Poppins-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/assets/fonts/Poppins-SemiBold.woff2') format('woff2'),
+       url('/assets/fonts/Poppins-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/assets/fonts/Poppins-Bold.woff2') format('woff2'),
+       url('/assets/fonts/Poppins-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg-primary: transparent;
+  --bg-secondary: transparent;
+  --bg-card: rgba(26, 26, 46, 0.5);
+  --bg-card-hover: rgba(34, 34, 64, 0.5);
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0b8;
+  --text-muted: #6b6b80;
+  --accent: #5571ed;
+  --accent-light: #4aaff1;
+  --accent-glow: rgba(85, 113, 237, 0.3);
+  --gradient-1: linear-gradient(135deg, #4aaff1, #5571ed, #d94cac 66%, #ed647d);
+  --gradient-2: linear-gradient(135deg, #4aaff1, #5571ed, #d94cac 66%, #ed647d);
+  --gradient-3: linear-gradient(135deg, #4aaff1, #5571ed, #d94cac 66%, #ed647d);
+  --border-color: rgba(255, 255, 255, 0.06);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --container-width: 1200px;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0a0a0f;
+  color: var(--text-primary);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+input, textarea {
+  font-family: inherit;
+  outline: none;
+}
+
+.container {
+  width: 90%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0 20px;
+  }
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: 16px;
+  position: relative;
+  padding-left: 40px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 2px;
+    background: var(--gradient-1);
+    border-radius: 2px;
+  }
+}
+
+.section-title {
+  font-family: 'Salsa', cursive;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 20px;
+
+  .highlight {
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 560px;
+  line-height: 1.8;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
+[data-aos] {
+  pointer-events: auto !important;
+}
+
+// Card shine sweep on hover
+
+.timeline-card,
+.testimonial-card,
+.info-card {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.03) 0%,
+      rgba(255, 255, 255, 0.15) 50%,
+      rgba(255, 255, 255, 0.03) 100%
+    );
+    transform: skewX(-25deg);
+    z-index: 2;
+    pointer-events: none;
+    transition: none;
+  }
+
+  &:hover::after {
+    animation: shineMove 0.8s ease forwards;
+  }
+}
+
+@keyframes shineMove {
+  0% { left: -100%; }
+  100% { left: 150%; }
+}

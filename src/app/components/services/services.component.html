@@ -1,0 +1,32 @@
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-label">What I Do</span>
+      <h2 class="section-title">
+        Services I <span class="highlight">Offer</span>
+      </h2>
+      <p class="section-subtitle">
+        I provide end-to-end design and development services, from Figma
+        wireframes to responsive, SEO-optimized web applications.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      @for (service of services; track service.title; let i = $index) {
+        <div
+          class="service-card" appTilt
+          data-aos="fade-up"
+          [attr.data-aos-delay]="i * 100">
+          <div class="card-icon" [ngClass]="service.gradient">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path [attr.d]="service.icon" />
+            </svg>
+          </div>
+          <h3 class="card-title">{{ service.title }}</h3>
+          <p class="card-desc">{{ service.description }}</p>
+          <span class="card-number">0{{ i + 1 }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>

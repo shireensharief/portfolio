@@ -1,0 +1,41 @@
+<section class="skills" id="skills">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-label">My Toolkit</span>
+      <h2 class="section-title">
+        Technical <span class="highlight">Skills</span>
+      </h2>
+      <p class="section-subtitle">
+        Tools and technologies I use to bring ideas from concept to production.
+      </p>
+    </div>
+
+    <div class="skills-tabs" data-aos="fade-up" data-aos-delay="100">
+      <div class="tab-buttons">
+        @for (category of categories; track category.title; let i = $index) {
+          <button
+            class="tab-btn"
+            [class.active]="activeTab === i"
+            (click)="setTab(i)">
+            {{ category.title }}
+          </button>
+        }
+      </div>
+
+      <div class="tab-content">
+        <div class="skills-grid">
+          @for (skill of categories[activeTab].skills; track skill.name) {
+            <div class="skill-card" appTilt>
+              @if (skill.image) {
+                <img class="skill-logo" [src]="skill.image" [alt]="skill.name" />
+              } @else {
+                <div class="skill-logo" [innerHTML]="skill.logo"></div>
+              }
+              <span class="skill-name">{{ skill.name }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
