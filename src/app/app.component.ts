@@ -1,6 +1,9 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { NavbarComponent } from './layout/navbar/navbar.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { CustomCursorComponent } from './shared/custom-cursor/custom-cursor.component';
+import { ParticlesBgComponent } from './shared/particles-bg/particles-bg.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { AboutComponent } from './components/about/about.component';
 import { SkillsComponent } from './components/skills/skills.component';
@@ -9,9 +12,6 @@ import { ServicesComponent } from './components/services/services.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { TestimonialsComponent } from './components/testimonials/testimonials.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { CustomCursorComponent } from './components/custom-cursor/custom-cursor.component';
-import { ParticlesBgComponent } from './components/particles-bg/particles-bg.component';
 
 declare const AOS: any;
 

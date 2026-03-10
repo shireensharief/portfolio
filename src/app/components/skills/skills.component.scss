@@ -52,6 +52,9 @@
 
 .tab-content {
   min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .skills-grid {
@@ -59,6 +62,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+  width: 80%;
 }
 
 .skill-card {
@@ -133,6 +137,7 @@ div.skill-logo {
 
   .skills-grid {
     gap: 12px;
+    width: 100%;
   }
 
   .skill-card {
@@ -154,6 +159,7 @@ div.skill-logo {
 
   .skills-grid {
     gap: 10px;
+    width: 100%;
   }
 
   .skill-card {

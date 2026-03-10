@@ -6,82 +6,90 @@
   </div>
 
   <div class="container hero-content">
-    <div class="hero-text" data-aos="fade-right" data-aos-duration="1000">
-      <h1 class="hero-title">
-        <span class="title-line">Hello! I'm <span class="highlight">Shireen H</span></span>
-        <span class="typewriter-wrapper">
-          <span class="typewriter-text">{{ displayText }}<span class="cursor">|</span></span>
-        </span>
-      </h1>
-      <p class="hero-tagline">I Craft Digital Experiences That Users Love</p>
-      <p class="hero-desc">
-        Bridging the gap between design and code.
-        From Figma wireframes to responsive Angular applications, I deliver
-        end-to-end digital experiences.
-      </p>
-      <div class="hero-actions">
-        <a class="btn-primary" (click)="scrollToSection('portfolio')">
-          View My Work
-          <span class="btn-arrow">&rarr;</span>
-        </a>
-        <a class="btn-outline" (click)="scrollToSection('contact')">
-          Get In Touch
-        </a>
+    <div class="row align-items-center">
+      <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            <span class="title-line">Hello! I'm <span class="highlight">Shireen H</span></span>
+            <span class="typewriter-wrapper">
+              <span class="typewriter-text">{{ displayText }}<span class="cursor">|</span></span>
+            </span>
+          </h1>
+          <p class="hero-tagline">I Craft Digital Experiences That Users Love</p>
+          <p class="hero-desc">
+            Bridging the gap between design and code.
+            From Figma wireframes to responsive Angular applications, I deliver
+            end-to-end digital experiences.
+          </p>
+          <div class="hero-actions d-flex flex-wrap gap-3">
+            <a class="btn-primary" (click)="scrollToSection('portfolio')">
+              View My Work
+              <span class="btn-arrow">&rarr;</span>
+            </a>
+            <a class="btn-outline" (click)="scrollToSection('contact')">
+              Get In Touch
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="hero-visual" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-      <div class="orbit-wrapper">
-        <!-- Center avatar -->
-        <div class="orbit-center">
-          <span class="avatar-initials">SH</span>
+      <div class="col-lg-6 d-none d-lg-block" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+        <div class="hero-visual d-flex justify-content-center align-items-center">
+          <div class="orbit-wrapper">
+            <!-- Center avatar -->
+            <div class="orbit-center">
+              <span class="avatar-initials">SH</span>
+            </div>
+
+            <!-- Inner orbit ring (Figma + Sketch) -->
+            <div class="orbit-ring orbit-inner">
+              <div class="orbit-icon icon-pos-top">
+                <img src="assets/images/figma.svg" alt="Figma" />
+              </div>
+              <div class="orbit-icon icon-pos-bottom">
+                <img src="assets/images/sketch.svg" alt="Sketch" />
+              </div>
+            </div>
+
+            <!-- Middle orbit ring (Angular + HTML) -->
+            <div class="orbit-ring orbit-middle">
+              <div class="orbit-icon icon-pos-top">
+                <img src="assets/images/angular.svg" alt="Angular" />
+              </div>
+              <div class="orbit-icon icon-pos-bottom">
+                <img src="assets/images/html.svg" alt="HTML" />
+              </div>
+            </div>
+
+            <!-- Outer orbit ring (CSS + SCSS) -->
+            <div class="orbit-ring orbit-outer">
+              <div class="orbit-icon icon-pos-top">
+                <img src="assets/images/css.svg" alt="CSS" />
+              </div>
+              <div class="orbit-icon icon-pos-bottom">
+                <img src="assets/images/scss.svg" alt="SCSS" />
+              </div>
+            </div>
+
+            <!-- Orbit path lines -->
+            <div class="orbit-path orbit-path-inner"></div>
+            <div class="orbit-path orbit-path-middle"></div>
+            <div class="orbit-path orbit-path-outer"></div>
+          </div>
         </div>
-
-        <!-- Inner orbit ring (Figma + Sketch) -->
-        <div class="orbit-ring orbit-inner">
-          <div class="orbit-icon icon-pos-top">
-            <img src="assets/images/figma.svg" alt="Figma" />
-          </div>
-          <div class="orbit-icon icon-pos-bottom">
-            <img src="assets/images/sketch.svg" alt="Sketch" />
-          </div>
-        </div>
-
-        <!-- Middle orbit ring (Angular + HTML) -->
-        <div class="orbit-ring orbit-middle">
-          <div class="orbit-icon icon-pos-top">
-            <img src="assets/images/angular.svg" alt="Angular" />
-          </div>
-          <div class="orbit-icon icon-pos-bottom">
-            <img src="assets/images/html.svg" alt="HTML" />
-          </div>
-        </div>
-
-        <!-- Outer orbit ring (CSS + SCSS) -->
-        <div class="orbit-ring orbit-outer">
-          <div class="orbit-icon icon-pos-top">
-            <img src="assets/images/css.svg" alt="CSS" />
-          </div>
-          <div class="orbit-icon icon-pos-bottom">
-            <img src="assets/images/scss.svg" alt="SCSS" />
-          </div>
-        </div>
-
-        <!-- Orbit path lines -->
-        <div class="orbit-path orbit-path-inner"></div>
-        <div class="orbit-path orbit-path-middle"></div>
-        <div class="orbit-path orbit-path-outer"></div>
       </div>
     </div>
   </div>
 
   <div class="stats-row" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
     <div class="container">
-      <div class="stats-grid">
+      <div class="row stats-grid g-0">
         @for (stat of stats; track stat.label) {
-          <div class="stat-item">
-            <span class="stat-value">{{ stat.display }}{{ stat.suffix }}</span>
-            <span class="stat-label">{{ stat.label }}</span>
+          <div class="col-6 col-md-3">
+            <div class="stat-item text-center">
+              <span class="stat-value">{{ stat.display }}{{ stat.suffix }}</span>
+              <span class="stat-label">{{ stat.label }}</span>
+            </div>
           </div>
         }
       </div>

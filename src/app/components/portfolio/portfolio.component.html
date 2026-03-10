@@ -1,16 +1,16 @@
 <section class="portfolio" id="portfolio">
   <div class="container">
-    <div class="section-header" data-aos="fade-up">
+    <div class="section-header text-center mb-5" data-aos="fade-up">
       <span class="section-label">My Work</span>
       <h2 class="section-title">
         Featured <span class="highlight">Projects</span>
       </h2>
-      <p class="section-subtitle">
+      <p class="section-subtitle mx-auto">
         A curated selection of my recent design work across various industries and platforms.
       </p>
     </div>
 
-    <div class="filter-bar" data-aos="fade-up" data-aos-delay="100">
+    <div class="filter-bar d-flex justify-content-center flex-wrap gap-2 mb-5" data-aos="fade-up" data-aos-delay="100">
       @for (filter of filters; track filter) {
         <button
           class="filter-btn"
@@ -21,24 +21,25 @@
       }
     </div>
 
-    <div class="projects-grid">
+    <div class="row g-4">
       @for (project of filteredProjects; track project.title; let i = $index) {
-        <div
-          class="project-card" appTilt
+        <div class="col-lg-4 col-md-6"
           data-aos="fade-up"
           [attr.data-aos-delay]="i * 100">
-          <div class="project-thumb" [ngClass]="project.gradient">
-            <div class="thumb-content">
-              <span class="project-initials">{{ project.title.charAt(0) }}</span>
+          <div class="project-card" appTilt>
+            <div class="project-thumb" [ngClass]="project.gradient">
+              <div class="thumb-content">
+                <span class="project-initials">{{ project.title.charAt(0) }}</span>
+              </div>
+              <div class="project-overlay">
+                <span class="view-btn">View Case Study</span>
+              </div>
             </div>
-            <div class="project-overlay">
-              <span class="view-btn">View Case Study</span>
+            <div class="project-info p-4">
+              <span class="project-tag">{{ project.tag }}</span>
+              <h3 class="project-title">{{ project.title }}</h3>
+              <p class="project-desc mb-0">{{ project.description }}</p>
             </div>
-          </div>
-          <div class="project-info">
-            <span class="project-tag">{{ project.tag }}</span>
-            <h3 class="project-title">{{ project.title }}</h3>
-            <p class="project-desc">{{ project.description }}</p>
           </div>
         </div>
       }

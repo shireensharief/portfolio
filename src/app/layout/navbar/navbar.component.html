@@ -4,16 +4,6 @@
       <img src="assets/images/shireen-logo.svg" alt="Shireen H Logo" class="logo-img" />
     </a>
 
-    <button
-      class="hamburger"
-      [class.active]="isMobileMenuOpen"
-      (click)="toggleMobileMenu()"
-      aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
     <div class="nav-links" [class.open]="isMobileMenuOpen">
       @for (link of navLinks; track link.sectionId) {
         @if (link.sectionId === 'contact') {
@@ -33,5 +23,21 @@
         }
       }
     </div>
+
+    <button
+      class="hamburger ms-auto"
+      [class.active]="isMobileMenuOpen"
+      (click)="toggleMobileMenu()"
+      aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </nav>
+
+<div
+  class="nav-overlay"
+  [class.open]="isMobileMenuOpen"
+  (click)="toggleMobileMenu()">
+</div>

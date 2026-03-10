@@ -56,7 +56,7 @@ export class SkillsComponent {
           image: 'assets/images/uiux.svg',
         },
         {
-          name: 'Colors',
+          name: 'Color Theory',
           color: '#5571ed',
           logo:'',
           image: 'assets/images/colors.svg',

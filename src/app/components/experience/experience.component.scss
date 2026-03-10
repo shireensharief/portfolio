@@ -63,7 +63,7 @@
   }
 
   .current & {
-    border-color: rgba(85, 113, 237, 0.15);
+    border-color: var(--border-color);
     background: linear-gradient(
       135deg,
       rgba(85, 113, 237, 0.05),

@@ -58,17 +58,14 @@
 .hero-content {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 60px;
   flex: 1;
+  display: flex;
+  align-items: center;
+
+  .row {
+    width: 100%;
+  }
 }
-// @media(max-width:767px){
-//   .hero-content{
-//     margin-top:50px;
-//   }
-// }
 .hero-title {
   font-family: 'Salsa', cursive;
   font-size: clamp(2.4rem, 5vw, 3.8rem);
@@ -140,12 +137,6 @@
   margin-bottom: 36px;
 }
 
-.hero-actions {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -189,12 +180,6 @@
     background: rgba(85, 113, 237, 0.1);
     transform: translateY(-3px);
   }
-}
-
-.hero-visual {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 // ── Orbit system ──
@@ -349,22 +334,23 @@
 }
 
 .stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
   padding: 32px;
   background: var(--bg-card);
   border-radius: var(--radius);
   border: 1px solid var(--border-color);
 }
 
+.stats-grid > [class*="col"] {
+  border-right: 1px solid var(--border-color);
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
 .stat-item {
   text-align: center;
   padding: 12px;
-
-  &:not(:last-child) {
-    border-right: 1px solid var(--border-color);
-  }
 }
 
 .stat-value {
@@ -404,16 +390,8 @@
 }
 
 // ── Mobile (≤768px) ──
-@media (max-width: 768px) {
-  .hero-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 16px;
-  }
-
-  .hero-text { order: 1; }
-  .hero-visual { display: none; }
-
+@media (max-width: 991px) {
+  .hero-text { text-align: center; }
   .hero-tagline {
     padding-left: 0;
     margin-bottom: 12px;
@@ -442,15 +420,21 @@
   }
 
   .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
     padding: 16px;
-    gap: 0;
   }
 
-  .stat-item:not(:last-child) { border-right: none; }
-  .stat-item:nth-child(odd)   { border-right: 1px solid var(--border-color); }
-  .stat-item:nth-child(1),
-  .stat-item:nth-child(2)     { border-bottom: 1px solid var(--border-color); }
+
+  .stats-grid > [class*="col"] {
+    border-right: none;
+
+    &:nth-child(odd) {
+      border-right: 1px solid var(--border-color);
+    }
+
+    &:last-child {
+      border-right: none;
+    }
+  }
 
   .stat-value { font-size: 1.5rem; }
   .stat-label { font-size: 0.8rem; }

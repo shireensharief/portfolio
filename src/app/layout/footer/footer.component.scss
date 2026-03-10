@@ -4,20 +4,17 @@
   border-top: 1px solid var(--border-color);
 }
 
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
-  gap: 48px;
-  padding-bottom: 48px;
-}
-
 .footer-logo {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 16px;
 }
-
+.logo-img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+}
 .logo-badge {
   width: 36px;
   height: 36px;
@@ -56,28 +53,16 @@
   margin-bottom: 20px;
 }
 
-.footer-links ul {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.footer-links ul li a {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  transition: all var(--transition);
+  cursor: pointer;
 
-  li a {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    transition: all var(--transition);
-    cursor: pointer;
-
-    &:hover {
-      color: var(--accent-light);
-      padding-left: 4px;
-    }
+  &:hover {
+    color: var(--accent-light);
+    padding-left: 4px;
   }
-}
-
-.social-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 }
 
 .social-link {
@@ -114,11 +99,11 @@
   }
 }
 
+.footer-name {
+  color: var(--text-secondary);
+}
+
 .footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 0;
   border-top: 1px solid var(--border-color);
 
   p {
@@ -128,39 +113,31 @@
 }
 
 .back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  color: var(--text-primary);
+  background: var(--gradient-1);
+  border: none;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all var(--transition);
+  z-index: 900;
+  box-shadow: 0 4px 16px var(--accent-glow);
 
   &:hover {
-    background: var(--accent);
-    border-color: var(--accent);
     transform: translateY(-3px);
-  }
-}
-
-@media (max-width: 992px) {
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
+    box-shadow: 0 8px 24px var(--accent-glow);
   }
 }
 
 @media (max-width: 768px) {
   .footer {
     padding: 60px 0 0;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
   }
 
   .footer-bottom {

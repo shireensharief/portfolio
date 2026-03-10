@@ -3,22 +3,6 @@
   background: var(--bg-primary);
 }
 
-.section-header {
-  text-align: center;
-  margin-bottom: 64px;
-
-  .section-subtitle {
-    margin: 0 auto;
-  }
-}
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 48px;
-  align-items: start;
-}
-
 .info-card {
   display: flex;
   align-items: center;
@@ -60,22 +44,6 @@
   font-weight: 500;
 }
 
-.social-links {
-  margin-top: 32px;
-}
-
-.social-label {
-  display: block;
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-
-.social-icons {
-  display: flex;
-  gap: 12px;
-}
-
 .social-icon {
   width: 44px;
   height: 44px;
@@ -99,44 +67,30 @@
   }
 }
 
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
+.form-control {
+  padding: 16px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: all var(--transition);
 
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
+  &::placeholder {
+    color: var(--text-muted);
+  }
 
-.form-group {
-  input,
-  textarea {
-    width: 100%;
-    padding: 16px 20px;
+  &:focus {
     background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
     color: var(--text-primary);
-    font-size: 0.95rem;
-    transition: all var(--transition);
-
-    &::placeholder {
-      color: var(--text-muted);
-    }
-
-    &:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-glow);
-    }
   }
+}
 
-  textarea {
-    resize: vertical;
-    min-height: 140px;
-  }
+textarea.form-control {
+  resize: vertical;
+  min-height: 140px;
 }
 
 .submit-btn {
@@ -181,25 +135,9 @@
   }
 }
 
-@media (max-width: 1024px) {
-  .contact-grid {
-    grid-template-columns: 1fr 1.1fr;
-    gap: 32px;
-  }
-}
-
 @media (max-width: 768px) {
   .contact {
     padding: 80px 0;
-  }
-
-  .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  .form-row {
-    grid-template-columns: 1fr;
   }
 
   .submit-btn {

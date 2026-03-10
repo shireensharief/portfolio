@@ -43,7 +43,7 @@
   --gradient-1: linear-gradient(135deg, #4aaff1, #5571ed, #d94cac 66%, #ed647d);
   --gradient-2: linear-gradient(135deg, #4aaff1, #5571ed, #d94cac 66%, #ed647d);
   --gradient-3: linear-gradient(135deg, #4aaff1, #5571ed, #d94cac 66%, #ed647d);
-  --border-color: rgba(255, 255, 255, 0.06);
+  --border-color: #232323;
   --radius: 16px;
   --radius-sm: 10px;
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -63,6 +63,7 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 body {
@@ -99,15 +100,9 @@ input, textarea {
   outline: none;
 }
 
+// Bootstrap container overrides
 .container {
-  width: 90%;
   max-width: var(--container-width);
-  margin: 0 auto;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    padding: 0 20px;
-  }
 }
 
 .section-label {

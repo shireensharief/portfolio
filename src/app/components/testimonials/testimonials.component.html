@@ -14,11 +14,7 @@
       <div class="carousel-track" [style.transform]="'translateX(-' + currentSlide * 100 + '%)'">
         @for (t of testimonials; track t.name) {
           <div class="testimonial-card" appTilt>
-            <div class="quote-icon">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-                <path d="M11 7H7.5C5.57 7 4 8.57 4 10.5V11c0 1.1.9 2 2 2h2c1.1 0 2-.9 2-2V7zm0 0c0-1.1-.9-2-2-2H7.5M20 7h-3.5C14.57 7 13 8.57 13 10.5V11c0 1.1.9 2 2 2h2c1.1 0 2-.9 2-2V7zm0 0c0-1.1-.9-2-2-2h-1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
+            
             <p class="testimonial-text">{{ t.text }}</p>
             <div class="testimonial-author">
               <div class="author-avatar">
