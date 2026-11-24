@@ -1,0 +1,81 @@
+<!-- EmailJS template for the portfolio contact form, styled like the site
+     (dark #0a0a0f page, #1a1a2e cards, Poppins, blue > magenta > coral gradient).
+     Paste into: EmailJS > Email Templates > template_23fl8zv > Content > Edit Content > Code Editor.
+     Variables come from contact.component.ts: name, email, phone (optional), title, message.
+     The logo loads from the live site, so it appears once assets/images/email-logo.png is pushed. -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<div style="margin:0;padding:36px 16px;background-color:#0a0a0f;font-family:'Poppins',-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px;margin:0 auto;">
+
+    <!-- Logo -->
+    <tr>
+      <td align="center" style="padding:0 0 22px;">
+        <a href="https://shireensharief.github.io/portfolio/" style="text-decoration:none;">
+          <img src="https://shireensharief.github.io/portfolio/assets/images/email-logo.png" width="150" height="35" alt="Shireen" style="display:block;border:0;width:150px;height:35px;color:#ffffff;font-size:24px;font-weight:700;">
+        </a>
+      </td>
+    </tr>
+
+    <!-- Card -->
+    <tr>
+      <td style="background-color:#1a1a2e;border:1px solid #232323;border-radius:16px;overflow:hidden;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+          <!-- gradient strip, same as the site's --gradient-1 -->
+          <tr>
+            <td style="height:5px;line-height:5px;font-size:0;background-color:#5571ed;background-image:linear-gradient(90deg,#4aaff1,#5571ed,#d94cac 66%,#ed647d);border-radius:16px 16px 0 0;">&nbsp;</td>
+          </tr>
+
+          <!-- Heading -->
+          <tr>
+            <td style="padding:30px 34px 6px;">
+              <p style="margin:0 0 8px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#4aaff1;font-weight:600;">Get In Touch &middot; New message</p>
+              <h1 style="margin:0;font-size:24px;line-height:1.35;color:#ffffff;font-weight:700;">{{title}}</h1>
+            </td>
+          </tr>
+
+          <!-- Sender -->
+          <tr>
+            <td style="padding:22px 34px 6px;">
+              <table role="presentation" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="width:46px;height:46px;border-radius:23px;background-color:#5571ed;background-image:linear-gradient(135deg,#4aaff1,#5571ed,#d94cac 66%,#ed647d);text-align:center;vertical-align:middle;"><img src="https://shireensharief.github.io/portfolio/assets/images/email-icon-mail.png" width="22" height="22" alt="" style="display:inline-block;border:0;width:22px;height:22px;vertical-align:middle;"></td>
+                  <td style="padding-left:14px;">
+                    <p style="margin:0;font-size:16px;font-weight:600;color:#ffffff;">{{name}}</p>
+                    <a href="mailto:{{email}}" style="font-size:14px;color:#4aaff1;text-decoration:none;">{{email}}</a>
+                    {{#phone}}<br><a href="tel:{{phone}}" style="font-size:14px;color:#a0a0b8;text-decoration:none;">&#9742; {{phone}}</a>{{/phone}}
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Message -->
+          <tr>
+            <td style="padding:20px 34px 6px;">
+              <p style="margin:0 0 10px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#6b6b80;font-weight:600;">Message</p>
+              <div style="background-color:#12121e;border:1px solid #2a2a40;border-left:3px solid #5571ed;border-radius:10px;padding:18px 20px;font-size:15px;line-height:1.75;color:#d6d6e4;white-space:pre-line;">{{message}}</div>
+            </td>
+          </tr>
+
+          <!-- Reply button: pill like the site's primary button -->
+          <tr>
+            <td style="padding:26px 34px 34px;">
+              <a href="mailto:{{email}}?subject=Re:%20{{title}}" style="display:inline-block;background-color:#5571ed;background-image:linear-gradient(135deg,#4aaff1,#5571ed,#d94cac 66%,#ed647d);color:#ffffff;text-decoration:none;font-size:14px;font-weight:600;padding:13px 28px;border-radius:50px;">Reply to {{name}} &rarr;</a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+      <td align="center" style="padding:22px 10px 0;">
+        <p style="margin:0;font-size:12px;line-height:1.7;color:#6b6b80;">
+          Sent from the contact form on
+          <a href="https://shireensharief.github.io/portfolio/" style="color:#a0a0b8;text-decoration:none;">shireensharief.github.io/portfolio</a><br>
+          &copy; Shireen H. Where Creativity meets Code.
+        </p>
+      </td>
+    </tr>
+  </table>
+</div>

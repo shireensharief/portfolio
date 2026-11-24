@@ -19,7 +19,6 @@ export class NavbarComponent {
     { label: 'Experience', sectionId: 'experience' },
     { label: 'Services', sectionId: 'services' },
     { label: 'Portfolio', sectionId: 'portfolio' },
-    { label: 'Testimonials', sectionId: 'testimonials' },
     { label: 'Contact', sectionId: 'contact' },
   ];
 

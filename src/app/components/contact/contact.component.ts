@@ -11,12 +11,7 @@ import emailjs from '@emailjs/browser';
   styleUrl: './contact.component.scss'
 })
 export class ContactComponent {
-  formData = {
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  };
+  formData = { name: '', email: '', phone: '', subject: '', message: '' };
 
   contactInfo = [
     { icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', label: 'Email', value: 'shireenh2131@gmail.com' },
@@ -49,6 +44,7 @@ export class ContactComponent {
     const templateParams = {
       name: this.formData.name,
       email: this.formData.email,
+      phone: this.formData.phone.trim(),
       title: this.formData.subject,
       message: this.formData.message,
     };
@@ -60,7 +56,7 @@ export class ContactComponent {
           this.submitted = true;
           setTimeout(() => {
             this.submitted = false;
-            this.formData = { name: '', email: '', subject: '', message: '' };
+            this.formData = { name: '', email: '', phone: '', subject: '', message: '' };
           }, 3000);
         });
       })

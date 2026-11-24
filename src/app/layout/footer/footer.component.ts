@@ -11,8 +11,13 @@ export class FooterComponent {
   private isBrowser: boolean;
   currentYear = new Date().getFullYear();
 
-  quickLinks = ['Home', 'About', 'Services', 'Portfolio', 'Testimonials', 'Contact'];
-  socials = ['Dribbble', 'Behance', 'LinkedIn', 'Twitter'];
+  quickLinks = ['Home', 'About', 'Services', 'Portfolio', 'Contact'];
+
+  /** Only links with a url are shown. Add the Dribbble profile url when it is ready. */
+  socials = [
+    { name: 'Dribbble', url: '' },
+    { name: 'Email', url: 'mailto:shireenh2131@gmail.com' },
+  ];
 
   constructor(
     @Inject(DOCUMENT) private document: Document,

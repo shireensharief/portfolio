@@ -4,10 +4,12 @@ import { TiltDirective } from '../../directives/tilt.directive';
 
 interface Project {
   title: string;
-  category: string;
+  platforms: ('mobile' | 'web')[];
   tag: string;
   description: string;
-  gradient: string;
+  image: string;
+  /** Link to the Dribbble shot. Leave empty until the shot is posted. */
+  dribbble: string;
 }
 
 @Component({
@@ -19,56 +21,62 @@ interface Project {
 export class PortfolioComponent {
   activeFilter = 'all';
 
-  filters = ['all', 'ui-design', 'web-development', 'wordpress'];
+  filters = ['all', 'mobile', 'web'];
 
   projects: Project[] = [
     {
-      title: 'Medical Web App',
-      category: 'ui-design',
-      tag: 'UI/UX Design',
-      description: 'End-to-end UI/UX design for complex medical web and mobile applications with intuitive user interfaces.',
-      gradient: 'gradient-1',
+      title: 'Kitly',
+      platforms: ['web', 'mobile'],
+      tag: 'Web + Mobile',
+      description: 'Test-kit ordering platform: a customer portal, an admin dashboard and a mobile scanner app, with promo codes, wallet credit and refunds.',
+      image: 'assets/images/work/kitly.jpg',
+      dribbble: '',
     },
     {
-      title: 'Enterprise Dashboard',
-      category: 'web-development',
-      tag: 'Web Development',
-      description: 'Responsive enterprise dashboard built with Angular and SASS, ensuring high performance and maintainable code.',
-      gradient: 'gradient-2',
+      title: 'Stockwise',
+      platforms: ['web', 'mobile'],
+      tag: 'Web + Mobile',
+      description: 'B2B ordering for distributors: a web shop, an order admin and an iOS app to follow every order from invoice to delivery.',
+      image: 'assets/images/work/stockwise.jpg',
+      dribbble: '',
     },
     {
-      title: 'E-Commerce Platform',
-      category: 'wordpress',
-      tag: 'WordPress',
-      description: 'Custom WordPress website with Elementor designs, improving user experience and SEO performance.',
-      gradient: 'gradient-3',
+      title: 'StripSense',
+      platforms: ['mobile'],
+      tag: 'Mobile App',
+      description: 'A mobile app that guides users through reading test strips, with a built-in timer and clear colour-matched results.',
+      image: 'assets/images/work/stripsense.jpg',
+      dribbble: '',
     },
     {
-      title: 'SaaS Landing Page',
-      category: 'web-development',
-      tag: 'Web Development',
-      description: 'High-converting responsive web application built with HTML5, CSS3, Bootstrap, and SCSS.',
-      gradient: 'gradient-1',
+      title: 'Softwarebase',
+      platforms: ['web'],
+      tag: 'Web App',
+      description: 'A software catalogue where teams publish releases and users find and download the right build for their platform.',
+      image: 'assets/images/work/softwarebase.jpg',
+      dribbble: '',
     },
     {
-      title: 'Mobile Health App',
-      category: 'ui-design',
-      tag: 'UI/UX Design',
-      description: 'Designed intuitive user interfaces ensuring seamless user journey from wireframes to high-fidelity prototypes.',
-      gradient: 'gradient-2',
+      title: 'GiveaBook',
+      platforms: ['mobile', 'web'],
+      tag: 'Mobile + Web Admin',
+      description: 'A book donation app for donors, with a web admin for the teams who run book drives, in light and dark themes.',
+      image: 'assets/images/work/giveabook.jpg',
+      dribbble: '',
     },
     {
-      title: 'Corporate Website',
-      category: 'wordpress',
-      tag: 'WordPress',
-      description: 'WordPress website with custom child theme, domain management, and complex site migration.',
-      gradient: 'gradient-3',
+      title: 'FieldLog',
+      platforms: ['mobile', 'web'],
+      tag: 'Mobile + Web',
+      description: 'A field service app for engineers on the road, plus a stock statement that keeps distributors and admins in sync.',
+      image: 'assets/images/work/fieldlog.jpg',
+      dribbble: '',
     },
   ];
 
   get filteredProjects(): Project[] {
     if (this.activeFilter === 'all') return this.projects;
-    return this.projects.filter(p => p.category === this.activeFilter);
+    return this.projects.filter(p => p.platforms.includes(this.activeFilter as 'mobile' | 'web'));
   }
 
   setFilter(filter: string): void {
@@ -76,7 +84,6 @@ export class PortfolioComponent {
   }
 
   formatFilter(filter: string): string {
-    if (filter === 'all') return 'All';
-    return filter.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    return { all: 'All', mobile: 'Mobile', web: 'Web' }[filter] ?? filter;
   }
 }

@@ -26,6 +26,10 @@
 }
 
 .project-card {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
@@ -40,35 +44,42 @@
       opacity: 1;
     }
 
-    .thumb-content {
+    .thumb-img {
       transform: scale(1.05);
     }
   }
+}
+
+.project-card.is-link {
+  cursor: pointer;
 }
 
 .project-thumb {
   position: relative;
   aspect-ratio: 4/3;
   overflow: hidden;
-
-  &.gradient-1 { background: var(--gradient-1); }
-  &.gradient-2 { background: var(--gradient-2); }
-  &.gradient-3 { background: var(--gradient-3); }
+  background: var(--bg-secondary, #111);
 }
 
-.thumb-content {
+.thumb-img {
+  display: block;
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  object-fit: cover;
   transition: transform var(--transition);
 }
 
-.project-initials {
-  font-size: 4rem;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.3);
+.soon-badge {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  padding: 6px 14px;
+  border-radius: 50px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
 .project-overlay {

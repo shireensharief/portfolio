@@ -30,11 +30,13 @@
         <div class="footer-social">
           <h4 class="footer-title">Connect</h4>
           <div class="social-list d-flex flex-column gap-2">
-            @for (s of socials; track s) {
-              <a class="social-link">
-                <span class="social-initial">{{ s.charAt(0) }}</span>
-                {{ s }}
-              </a>
+            @for (s of socials; track s.name) {
+              @if (s.url) {
+                <a class="social-link" [href]="s.url" target="_blank" rel="noopener">
+                  <span class="social-initial">{{ s.name.charAt(0) }}</span>
+                  {{ s.name }}
+                </a>
+              }
             }
           </div>
         </div>

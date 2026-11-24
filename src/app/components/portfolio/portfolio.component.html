@@ -6,7 +6,7 @@
         Featured <span class="highlight">Projects</span>
       </h2>
       <p class="section-subtitle mx-auto">
-        A curated selection of my recent design work across various industries and platforms.
+        Six case studies from real products I designed. Client names and details are changed to keep them confidential.
       </p>
     </div>
 
@@ -24,23 +24,35 @@
     <div class="row g-4">
       @for (project of filteredProjects; track project.title; let i = $index) {
         <div class="col-lg-4 col-md-6"
-          data-aos="fade-up"
-          [attr.data-aos-delay]="i * 100">
-          <div class="project-card" appTilt>
-            <div class="project-thumb" [ngClass]="project.gradient">
-              <div class="thumb-content">
-                <span class="project-initials">{{ project.title.charAt(0) }}</span>
-              </div>
-              <div class="project-overlay">
-                <span class="view-btn">View Case Study</span>
-              </div>
+             data-aos="fade-up"
+             [attr.data-aos-delay]="i * 100">
+          <ng-template #card>
+            <div class="project-thumb">
+              <img class="thumb-img" [src]="project.image" [alt]="project.title + ' case study'" loading="lazy" />
+              @if (project.dribbble) {
+                <div class="project-overlay">
+                  <span class="view-btn">View on Dribbble <span aria-hidden="true">&nearr;</span></span>
+                </div>
+              } @else {
+                <span class="soon-badge">Coming soon to Dribbble</span>
+              }
             </div>
             <div class="project-info p-4">
               <span class="project-tag">{{ project.tag }}</span>
               <h3 class="project-title">{{ project.title }}</h3>
               <p class="project-desc mb-0">{{ project.description }}</p>
             </div>
-          </div>
+          </ng-template>
+          @if (project.dribbble) {
+            <a class="project-card is-link" [href]="project.dribbble" target="_blank" rel="noopener"
+               [attr.aria-label]="'Open the ' + project.title + ' case study on Dribbble'" appTilt>
+              <ng-container [ngTemplateOutlet]="card" />
+            </a>
+          } @else {
+            <div class="project-card" appTilt>
+              <ng-container [ngTemplateOutlet]="card" />
+            </div>
+          }
         </div>
       }
     </div>

@@ -20,9 +20,9 @@ export class HeroComponent implements OnInit, OnDestroy {
 
   stats = [
     { target: 3,  suffix: '+', display: '0', label: 'Years Experience' },
-    { target: 10, suffix: '+', display: '0', label: 'Projects Completed' },
-    { target: 20, suffix: '+', display: '0', label: 'Happy Clients' },
-    { target: 95, suffix: '%', display: '0', label: 'Satisfaction Rate' },
+    { target: 15, suffix: '+', display: '0', label: 'Products Designed' },
+    { target: 6,  suffix: '',  display: '0', label: 'Case Studies' },
+    { target: 2,  suffix: '',  display: '0', label: 'Companies' },
   ];
 
   constructor(

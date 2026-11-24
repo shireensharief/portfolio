@@ -165,3 +165,20 @@
     max-width: 260px;
   }
 }
+
+.about-illustration {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  margin: 0 auto;
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.25));
+}
+
+@media (max-width: 991px) {
+  .about-illustration { max-width: 380px; }
+}
+
+@media (max-width: 480px) {
+  .about-illustration { max-width: 280px; }
+}
