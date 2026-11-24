@@ -1,0 +1,38 @@
+// Only the parts of Bootstrap this site uses (grid, form-control, a few utilities),
+// instead of the full 234 kB bootstrap.min.css.
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+
+// Keep only the utility groups the templates use (d-*, flex, gap, m*/p*, text-center, h-100).
+$utilities: map-get-multiple(
+  $utilities,
+  (
+    "display",
+    "flex-direction",
+    "flex-wrap",
+    "justify-content",
+    "align-items",
+    "gap",
+    "margin",
+    "margin-x",
+    "margin-bottom",
+    "margin-start",
+    "padding",
+    "padding-y",
+    "padding-bottom",
+    "text-align",
+    "height"
+  )
+);
+
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/forms/form-control";
+@import "bootstrap/scss/utilities/api";

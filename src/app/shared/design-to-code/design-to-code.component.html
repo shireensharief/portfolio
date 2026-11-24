@@ -1,0 +1,64 @@
+<div class="scene" role="img"
+     aria-label="Animation: a wireframe card in a design tool becomes the finished design while the matching Angular code types itself in an editor">
+
+  <!-- Design ⇄ Code toggle -->
+  <div class="mode-toggle" aria-hidden="true">
+    <span class="knob"></span>
+    <span class="opt">Design</span>
+    <span class="opt">Code</span>
+  </div>
+
+  <!-- Design window -->
+  <div class="win design-win">
+    <div class="win-bar">
+      <span class="dots"><i></i><i></i><i></i></span>
+      <span class="win-title">
+        <svg width="10" height="14" viewBox="0 0 38 57" aria-hidden="true"><path fill="#1abcfe" d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z"/><path fill="#0acf83" d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 1 1-19 0z"/><path fill="#ff7262" d="M19 0v19h9.5a9.5 9.5 0 1 0 0-19H19z"/><path fill="#f24e1e" d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z"/><path fill="#a259ff" d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z"/></svg>
+        Project card
+      </span>
+    </div>
+    <div class="win-canvas">
+      <div class="d2c-card">
+        <span class="d2c-card-bg" (animationiteration)="next()"></span>
+        <span class="wire-card"></span>
+        <div class="d2c-card-body">
+          <div class="d2c-cover step s2">
+            <span class="wire wire-img"><i></i></span>
+            <img class="final" [src]="project.cover" alt="" />
+          </div>
+          <div class="d2c-title step s3">
+            <span class="wire wire-lines"><i class="w70"></i></span>
+            <span class="final">{{ project.title }}</span>
+          </div>
+          <div class="d2c-desc step s4">
+            <span class="wire wire-lines"><i class="w90"></i><i class="w60"></i></span>
+            <span class="final">{{ project.summary }}</span>
+          </div>
+          <div class="d2c-cta step s5">
+            <span class="wire wire-btn"></span>
+            <span class="final">View case study &rarr;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- connector from the design card to the code window -->
+  <svg class="link" viewBox="0 0 80 100" aria-hidden="true">
+    <path d="M2 6 C 52 6 66 44 66 96" fill="none" />
+    <circle r="3.2" class="link-dot">
+      <animateMotion dur="2.4s" repeatCount="indefinite" path="M2 6 C 52 6 66 44 66 96" />
+    </circle>
+  </svg>
+
+  <!-- Code window -->
+  <div class="win code-win">
+    <div class="win-bar">
+      <span class="dots"><i></i><i></i><i></i></span>
+      <span class="tab">project-card.component.html</span>
+    </div>
+    <pre class="code" ngNonBindable><span class="ln l1" style="--n:23"><span class="t">&lt;article</span> <span class="a">class</span>=<span class="s">"card"</span><span class="t">&gt;</span></span><span class="ln l2" style="--n:32">  <span class="t">&lt;img</span> <span class="a">[src]</span>=<span class="s">"project.cover"</span> <span class="t">/&gt;</span></span><span class="ln l3" style="--n:31">  <span class="t">&lt;h3&gt;</span><span class="i">{{ project.title }}</span><span class="t">&lt;/h3&gt;</span></span><span class="ln l4" style="--n:31">  <span class="t">&lt;p&gt;</span><span class="i">{{ project.summary }}</span><span class="t">&lt;/p&gt;</span></span><span class="ln l5" style="--n:32">  <span class="t">&lt;button</span> <span class="a">class</span>=<span class="s">"btn-gradient"</span><span class="t">&gt;</span></span><span class="ln l6" style="--n:20">    View case study</span><span class="ln l7" style="--n:12">  <span class="t">&lt;/button&gt;</span></span><span class="ln l8" style="--n:11"><span class="t">&lt;/article&gt;</span></span></pre>
+    <div class="status"><span class="ok"></span><span class="status-text">Compiled successfully</span></div>
+  </div>
+</div>

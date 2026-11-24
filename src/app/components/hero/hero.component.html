@@ -26,73 +26,22 @@
               View My Work
               <span class="btn-arrow">&rarr;</span>
             </a>
-            <a class="btn-outline" (click)="scrollToSection('contact')">
-              Get In Touch
-            </a>
+            @if (links.resume) {
+              <a class="btn-outline" [href]="links.resume" target="_blank" rel="noopener" download>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right:8px"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+                Download Résumé
+              </a>
+            }
           </div>
         </div>
       </div>
 
-      <div class="col-lg-6 d-none d-lg-block" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+      <div class="col-lg-6 hero-visual-col" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
         <div class="hero-visual d-flex justify-content-center align-items-center">
-          <div class="orbit-wrapper">
-            <!-- Center avatar -->
-            <div class="orbit-center">
-              <span class="avatar-initials">SH</span>
-            </div>
-
-            <!-- Inner orbit ring (Figma + Sketch) -->
-            <div class="orbit-ring orbit-inner">
-              <div class="orbit-icon icon-pos-top">
-                <img src="assets/images/figma.svg" alt="Figma" />
-              </div>
-              <div class="orbit-icon icon-pos-bottom">
-                <img src="assets/images/sketch.svg" alt="Sketch" />
-              </div>
-            </div>
-
-            <!-- Middle orbit ring (Angular + HTML) -->
-            <div class="orbit-ring orbit-middle">
-              <div class="orbit-icon icon-pos-top">
-                <img src="assets/images/angular.svg" alt="Angular" />
-              </div>
-              <div class="orbit-icon icon-pos-bottom">
-                <img src="assets/images/html.svg" alt="HTML" />
-              </div>
-            </div>
-
-            <!-- Outer orbit ring (CSS + SCSS) -->
-            <div class="orbit-ring orbit-outer">
-              <div class="orbit-icon icon-pos-top">
-                <img src="assets/images/css.svg" alt="CSS" />
-              </div>
-              <div class="orbit-icon icon-pos-bottom">
-                <img src="assets/images/scss.svg" alt="SCSS" />
-              </div>
-            </div>
-
-            <!-- Orbit path lines -->
-            <div class="orbit-path orbit-path-inner"></div>
-            <div class="orbit-path orbit-path-middle"></div>
-            <div class="orbit-path orbit-path-outer"></div>
-          </div>
+          <app-design-to-code />
         </div>
       </div>
     </div>
   </div>
 
-  <div class="stats-row" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
-    <div class="container">
-      <div class="row stats-grid g-0">
-        @for (stat of stats; track stat.label) {
-          <div class="col-6 col-md-3">
-            <div class="stat-item text-center">
-              <span class="stat-value">{{ stat.display }}{{ stat.suffix }}</span>
-              <span class="stat-label">{{ stat.label }}</span>
-            </div>
-          </div>
-        }
-      </div>
-    </div>
-  </div>
 </section>

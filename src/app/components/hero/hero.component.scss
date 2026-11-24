@@ -8,8 +8,10 @@
   overflow: hidden;
   padding-top: 80px;
 
-  @media (max-width: 768px) {
-    padding-top: 70px;
+  // phones/tablets: start the content clearly below the floating navbar (it ends at ~80px)
+  @media (max-width: 991px) {
+    padding-top: 120px;
+    padding-bottom: 40px;
   }
 }
 
@@ -62,8 +64,9 @@
   display: flex;
   align-items: center;
 
+  // fill the container; width:100% cancelled Bootstrap's negative row margins and shifted everything 12px left
   .row {
-    width: 100%;
+    flex: 1 1 auto;
   }
 }
 .hero-title {
@@ -182,215 +185,16 @@
   }
 }
 
-// ── Orbit system ──
-.orbit-wrapper {
-  position: relative;
-  width: 380px;
-  height: 380px;
-}
-
-// Center circle with initials
-.orbit-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: var(--bg-card);
-  border: 2px solid var(--border-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  box-shadow: 0 0 40px var(--accent-glow);
-}
-
-.avatar-initials {
-  font-size: 2.2rem;
-  font-weight: 700;
-  background: var(--gradient-1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-// Orbit path rings (visual only)
-.orbit-path {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgb(208 180 255 / 0.3);
-  top: 50%;
-  left: 50%;
-}
-
-.orbit-path-inner {
-  width: 180px;
-  height: 180px;
-  transform: translate(-50%, -50%);
-}
-
-.orbit-path-middle {
-  width: 280px;
-  height: 280px;
-  transform: translate(-50%, -50%);
-}
-
-.orbit-path-outer {
-  width: 370px;
-  height: 370px;
-  transform: translate(-50%, -50%);
-}
-
-// Spinning orbit rings
-.orbit-ring {
-  position: absolute;
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-}
-
-.orbit-inner {
-  width: 180px;
-  height: 180px;
-  margin-left: -90px;
-  margin-top: -90px;
-  animation: orbit-spin 18s linear infinite;
-}
-
-.orbit-middle {
-  width: 280px;
-  height: 280px;
-  margin-left: -140px;
-  margin-top: -140px;
-  animation: orbit-spin 28s linear infinite reverse;
-}
-
-.orbit-outer {
-  width: 370px;
-  height: 370px;
-  margin-left: -185px;
-  margin-top: -185px;
-  animation: orbit-spin 36s linear infinite;
-}
-
-@keyframes orbit-spin {
-  to { transform: rotate(360deg); }
-}
-
-// Icon badges on the orbit
-.orbit-icon {
-  position: absolute;
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
-  background: #480760;
-  border: 1px solid var(--border-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-
-  img {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-  }
-}
-
-// Counter-rotate icons so they stay upright
-.orbit-inner .orbit-icon {
-  animation: counter-spin 18s linear infinite;
-}
-
-.orbit-middle .orbit-icon {
-  animation: counter-spin 28s linear infinite reverse;
-}
-
-.orbit-outer .orbit-icon {
-  animation: counter-spin 36s linear infinite;
-}
-
-@keyframes counter-spin {
-  to { transform: rotate(-360deg); }
-}
-
-// 2 icons per ring, positioned 180deg apart (top + bottom)
-.icon-pos-top {
-  top: -22px;
-  left: calc(50% - 22px);
-}
-
-.icon-pos-bottom {
-  bottom: -22px;
-  left: calc(50% - 22px);
-}
-
-.stats-row {
-  position: relative;
-  z-index: 1;
-  padding: 40px 0;
-}
-
-.stats-grid {
-  padding: 32px;
-  background: var(--bg-card);
-  border-radius: var(--radius);
-  border: 1px solid var(--border-color);
-}
-
-.stats-grid > [class*="col"] {
-  border-right: 1px solid var(--border-color);
-
-  &:last-child {
-    border-right: none;
-  }
-}
-
-.stat-item {
-  text-align: center;
-  padding: 12px;
-}
-
-.stat-value {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  background: var(--gradient-1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 4px;
-}
-
-.stat-label {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
 // ── Tablet (≤1024px) ──
 @media (max-width: 1024px) {
   .hero-content {
     gap: 40px;
   }
-
-  .orbit-wrapper {
-    width: 300px;
-    height: 300px;
-  }
-
-  .orbit-path-inner  { width: 145px; height: 145px; }
-  .orbit-path-middle { width: 220px; height: 220px; }
-  .orbit-path-outer  { width: 292px; height: 292px; }
-
-  .orbit-inner  { width: 145px; height: 145px; margin-left: -72.5px; margin-top: -72.5px; }
-  .orbit-middle { width: 220px; height: 220px; margin-left: -110px;  margin-top: -110px;  }
-  .orbit-outer  { width: 292px; height: 292px; margin-left: -146px;  margin-top: -146px;  }
 }
 
 // ── Mobile (≤768px) ──
 @media (max-width: 991px) {
+  .hero-visual-col { margin-top: 48px; }
   .hero-text { text-align: center; }
   .hero-tagline {
     padding-left: 0;
@@ -415,27 +219,6 @@
     font-size: 0.9rem;
   }
 
-  .stats-row {
-    padding: 20px 0;
-  }
-
-  .stats-grid {
-    padding: 16px;
-  }
-
-
-  .stats-grid > [class*="col"] {
-    border-right: none;
-
-    &:nth-child(odd) {
-      border-right: 1px solid var(--border-color);
-    }
-
-    &:last-child {
-      border-right: none;
-    }
-  }
-
-  .stat-value { font-size: 1.5rem; }
-  .stat-label { font-size: 0.8rem; }
 }
+
+

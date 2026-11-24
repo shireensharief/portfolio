@@ -4,7 +4,7 @@
       <div class="col-lg-5 col-md-6">
         <div class="footer-brand">
           <a class="logo mb-3 d-inline-block" (click)="scrollToSection('home')">
-            <img src="assets/images/shireen-logo.svg" alt="Shireen H Logo" class="logo-img" />
+            <img src="assets/images/shireen-logo.webp" alt="Shireen H Logo" class="logo-img" />
           </a>
           <p class="footer-desc">
             UI/UX Designer & UI Developer bridging design and code to create
@@ -33,7 +33,11 @@
             @for (s of socials; track s.name) {
               @if (s.url) {
                 <a class="social-link" [href]="s.url" target="_blank" rel="noopener">
-                  <span class="social-initial">{{ s.name.charAt(0) }}</span>
+                  <span class="social-initial" aria-hidden="true" [style.--brand]="s.color">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                      <path [attr.d]="s.icon" />
+                    </svg>
+                  </span>
                   {{ s.name }}
                 </a>
               }

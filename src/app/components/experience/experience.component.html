@@ -43,6 +43,11 @@
               @for (item of exp.highlights; track item) {
                 <li>{{ item }}</li>
               }
+              @if (links.resume) {
+                <li class="resume-point">
+                  <a [href]="links.resume" target="_blank" rel="noopener" download>Download résumé to know more</a>
+                </li>
+              }
             </ul>
           </div>
         </div>

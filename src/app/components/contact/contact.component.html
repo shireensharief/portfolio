@@ -32,7 +32,7 @@
       </div>
 
       <div class="col-lg-7" data-aos="fade-left" data-aos-delay="200">
-        <form class="contact-form d-flex flex-column gap-3" (ngSubmit)="onSubmit()">
+        <form class="contact-form d-flex flex-column gap-3" #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
           <div class="row g-3">
             <div class="col-md-6">
               <input
@@ -41,7 +41,14 @@
                 placeholder="Your Name"
                 [(ngModel)]="formData.name"
                 name="name"
-                required>
+                required
+                pattern="[\s\S]*\S[\s\S]*"
+                #nameCtl="ngModel"
+                [class.is-invalid]="nameCtl.invalid && (nameCtl.touched || f.submitted)"
+                [attr.aria-invalid]="nameCtl.invalid && (nameCtl.touched || f.submitted)">
+              @if (nameCtl.invalid && (nameCtl.touched || f.submitted)) {
+                <small class="field-hint">Please enter your name.</small>
+              }
             </div>
             <div class="col-md-6">
               <input
@@ -50,7 +57,14 @@
                 placeholder="Your Email"
                 [(ngModel)]="formData.email"
                 name="email"
-                required>
+                required email
+                pattern="[\s\S]*\S[\s\S]*"
+                #emailCtl="ngModel"
+                [class.is-invalid]="emailCtl.invalid && (emailCtl.touched || f.submitted)"
+                [attr.aria-invalid]="emailCtl.invalid && (emailCtl.touched || f.submitted)">
+              @if (emailCtl.invalid && (emailCtl.touched || f.submitted)) {
+                <small class="field-hint">Please enter a valid email address.</small>
+              }
             </div>
           </div>
           <div class="row g-3">
@@ -71,7 +85,14 @@
                 placeholder="Subject"
                 [(ngModel)]="formData.subject"
                 name="subject"
-                required>
+                required
+                pattern="[\s\S]*\S[\s\S]*"
+                #subjectCtl="ngModel"
+                [class.is-invalid]="subjectCtl.invalid && (subjectCtl.touched || f.submitted)"
+                [attr.aria-invalid]="subjectCtl.invalid && (subjectCtl.touched || f.submitted)">
+              @if (subjectCtl.invalid && (subjectCtl.touched || f.submitted)) {
+                <small class="field-hint">Please add a subject.</small>
+              }
             </div>
           </div>
           <textarea
@@ -80,7 +101,14 @@
             rows="6"
             [(ngModel)]="formData.message"
             name="message"
-            required></textarea>
+            required
+                pattern="[\s\S]*\S[\s\S]*"
+                #messageCtl="ngModel"
+                [class.is-invalid]="messageCtl.invalid && (messageCtl.touched || f.submitted)"
+                [attr.aria-invalid]="messageCtl.invalid && (messageCtl.touched || f.submitted)"></textarea>
+              @if (messageCtl.invalid && (messageCtl.touched || f.submitted)) {
+                <small class="field-hint">Please write a short message.</small>
+              }
           <button type="submit" class="submit-btn" [class.sent]="submitted" [class.error]="error" [disabled]="sending">
             @if (sending) {
               <span>Sending...</span>

@@ -1,0 +1,30 @@
+<section class="process" id="process">
+  <div class="container">
+    <div class="section-header text-center mb-5" data-aos="fade-up">
+      <span class="section-label">My Process</span>
+      <h2 class="section-title">
+        How I <span class="highlight">Work</span>
+      </h2>
+      <p class="section-subtitle mx-auto">
+        From the first conversation to the final review, every project follows the same clear steps.
+      </p>
+    </div>
+
+    <ol class="process-steps">
+      @for (step of steps; track step.title; let i = $index) {
+        <li class="process-step" data-aos="fade-up" [attr.data-aos-delay]="i * 100">
+          <span class="step-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path [attr.d]="step.icon" />
+            </svg>
+          </span>
+          <div class="step-card">
+            <span class="step-num">0{{ i + 1 }}</span>
+            <h3 class="step-title">{{ step.title }}</h3>
+            <p class="step-desc">{{ step.desc }}</p>
+          </div>
+        </li>
+      }
+    </ol>
+  </div>
+</section>

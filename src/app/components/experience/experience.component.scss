@@ -144,6 +144,18 @@
       border-radius: 50%;
       background: var(--gradient-1);
     }
+
+    &.resume-point a {
+      color: var(--accent-light);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color var(--transition);
+
+      &:hover {
+        color: #7cc4f5;
+      }
+    }
   }
 }
 

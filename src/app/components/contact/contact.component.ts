@@ -1,8 +1,7 @@
 import { Component, Inject, NgZone, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { TiltDirective } from '../../directives/tilt.directive';
-import emailjs from '@emailjs/browser';
 
 @Component({
   selector: 'app-contact',
@@ -35,8 +34,13 @@ export class ContactComponent {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
-  onSubmit(): void {
+  onSubmit(form: NgForm): void {
     if (!this.isBrowser || this.sending) return;
+    // Block empty or whitespace-only messages; the template shows a hint under each missing field.
+    if (form.invalid) {
+      form.control.markAllAsTouched();
+      return;
+    }
 
     this.sending = true;
     this.error = false;
@@ -49,13 +53,16 @@ export class ContactComponent {
       message: this.formData.message,
     };
 
-    emailjs.send(this.serviceId, this.templateId, templateParams, this.publicKey)
+    // Load EmailJS only when someone actually sends a message, keeping it out of the first page load.
+    import('@emailjs/browser')
+      .then(({ default: emailjs }) => emailjs.send(this.serviceId, this.templateId, templateParams, this.publicKey))
       .then(() => {
         this.ngZone.run(() => {
           this.sending = false;
           this.submitted = true;
           setTimeout(() => {
             this.submitted = false;
+            form.resetForm();
             this.formData = { name: '', email: '', phone: '', subject: '', message: '' };
           }, 3000);
         });

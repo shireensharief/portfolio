@@ -1,29 +1,25 @@
 import { Component, Inject, OnInit, OnDestroy, PLATFORM_ID } from '@angular/core';
+import { SITE_LINKS } from '../../site-links';
+import { DesignToCodeComponent } from '../../shared/design-to-code/design-to-code.component';
 import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-hero',
-  imports: [CommonModule],
+  imports: [CommonModule, DesignToCodeComponent],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.scss'
 })
 export class HeroComponent implements OnInit, OnDestroy {
   private isBrowser: boolean;
   private typewriterTimeout: any;
-  private statsObserver: IntersectionObserver | null = null;
 
   displayText = '';
+  links = SITE_LINKS;
   private roles = ['UI/UX Designer', 'UI Developer'];
   private roleIndex = 0;
   private charIndex = 0;
   private isDeleting = false;
 
-  stats = [
-    { target: 3,  suffix: '+', display: '0', label: 'Years Experience' },
-    { target: 15, suffix: '+', display: '0', label: 'Products Designed' },
-    { target: 6,  suffix: '',  display: '0', label: 'Case Studies' },
-    { target: 2,  suffix: '',  display: '0', label: 'Companies' },
-  ];
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -35,48 +31,11 @@ export class HeroComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     if (this.isBrowser) {
       this.typewrite();
-      this.observeStats();
     }
   }
 
   ngOnDestroy(): void {
     if (this.typewriterTimeout) clearTimeout(this.typewriterTimeout);
-    if (this.statsObserver) this.statsObserver.disconnect();
-  }
-
-  private observeStats(): void {
-    const statsRow = this.document.querySelector('.stats-row');
-    if (!statsRow) return;
-
-    this.statsObserver = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        this.animateStats();
-        this.statsObserver?.disconnect();
-      }
-    }, { threshold: 0.3 });
-
-    this.statsObserver.observe(statsRow);
-  }
-
-  private animateStats(): void {
-    const duration = 1500;
-    const frameRate = 60;
-    const totalFrames = (duration / 1000) * frameRate;
-
-    this.stats.forEach(stat => {
-      let frame = 0;
-      const counter = setInterval(() => {
-        frame++;
-        const progress = frame / totalFrames;
-        const eased = 1 - Math.pow(1 - progress, 3);
-        stat.display = Math.floor(eased * stat.target).toString();
-
-        if (frame >= totalFrames) {
-          stat.display = stat.target.toString();
-          clearInterval(counter);
-        }
-      }, 1000 / frameRate);
-    });
   }
 
   private typewrite(): void {

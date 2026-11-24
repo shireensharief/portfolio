@@ -139,10 +139,16 @@
     gap: 0.25rem;
     z-index: 999;
     transform: translateX(100%);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    // The navbar's transform/backdrop-filter make it the containing block for this
+    // fixed drawer, so "off-screen" ends at the navbar edge, not the viewport edge.
+    // Hide it completely while closed so its border never shows as a thin line.
+    visibility: hidden;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear 0.3s;
 
     &.open {
       transform: translateX(0);
+      visibility: visible;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s;
     }
   }
 }
@@ -179,5 +185,20 @@
     &.active {
       color: #fff;
     }
+  }
+}
+
+// At the top of the page the navbar is inset (1rem from the top, 5vw / 20px from the sides),
+// and the drawer is positioned relative to it, so pull the open drawer out to the screen edges.
+@media (max-width: 991px) {
+  .navbar:not(.scrolled) .nav-links {
+    top: calc(-1rem - 1px);
+    right: calc(-5vw - 1px);
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar:not(.scrolled) .nav-links {
+    right: -21px;
   }
 }

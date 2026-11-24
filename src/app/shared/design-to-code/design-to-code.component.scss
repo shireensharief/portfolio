@@ -1,0 +1,475 @@
+// ─── Timeline (one 12s loop) ───────────────────────────────
+// Each code line types out, then the matching piece of the card
+// switches from wireframe to finished design. Everything holds,
+// then resets at ~93-97% and starts again.
+$loop: 12s;
+$line-starts: 3, 12, 21, 30, 39, 45, 51, 56;   // % where each code line starts typing
+$step-starts: 8, 17, 26, 35, 57, 62;           // % where each design piece appears
+
+$win: #111119;
+$bar: #15151f;
+$line: #26263a;
+$grad: linear-gradient(135deg, #4aaff1, #5571ed, #d94cac 66%, #ed647d);
+
+:host {
+  display: block;
+}
+
+.scene {
+  position: relative;
+  width: 580px;
+  height: 470px;
+  margin: 0 auto;
+  font-size: 12px;
+  user-select: none;
+}
+
+// ─── Windows ───
+.win {
+  position: absolute;
+  background: $win;
+  border: 1px solid $line;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55), 0 0 50px rgba(85, 113, 237, 0.12);
+}
+
+.win-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  background: $bar;
+  border-bottom: 1px solid $line;
+  color: var(--text-secondary);
+}
+
+.dots {
+  display: flex;
+  gap: 5px;
+
+  i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #f26b5b;
+    &:nth-child(2) { background: #f5b026; }
+    &:nth-child(3) { background: #3cc37a; }
+  }
+}
+
+.win-title,
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.tab {
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: #1d1d2b;
+  font-weight: 500;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.design-win {
+  left: 0;
+  top: 0;
+  width: 250px;
+  animation: float 7s ease-in-out infinite;
+}
+
+.code-win {
+  right: 0;
+  bottom: 0;
+  width: 290px;
+  z-index: 2;
+  animation: float 7s ease-in-out infinite -3.5s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+// ─── Design canvas ───
+.win-canvas {
+  padding: 16px;
+  background-color: #0c0c13;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 12px 12px;
+}
+
+.d2c-card {
+  position: relative;
+  padding: 12px;
+}
+
+.d2c-card-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: #1b1b2b;
+  border: 1px solid #2e2e46;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  animation: show-1 $loop infinite;
+}
+
+.wire-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  border: 1.5px dashed #3a3a55;
+  animation: hide-1 $loop infinite;
+}
+
+.d2c-card-body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+// a "step" stacks its wireframe and final versions in the same spot
+.step {
+  display: grid;
+
+  > * {
+    grid-area: 1 / 1;
+  }
+}
+
+.wire {
+  color: #3a3a55;
+}
+
+.d2c-cover {
+  height: 118px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.wire-img {
+  position: relative;
+  border: 1.5px dashed #3a3a55;
+  border-radius: 8px;
+  background:
+    linear-gradient(to top right, transparent calc(50% - 1px), #3a3a55 50%, transparent calc(50% + 1px)),
+    linear-gradient(to top left, transparent calc(50% - 1px), #3a3a55 50%, transparent calc(50% + 1px));
+}
+
+.d2c-cover .final {
+  width: 100%;
+  height: 118px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 8px;
+}
+
+.wire-lines {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+
+  i {
+    display: block;
+    height: 8px;
+    border-radius: 4px;
+    background: #2a2a40;
+  }
+
+  .w90 { width: 90%; }
+  .w70 { width: 70%; height: 12px; }
+  .w60 { width: 60%; }
+}
+
+.d2c-title .final {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.d2c-desc .final {
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.d2c-cta {
+  justify-items: start;
+}
+
+.wire-btn {
+  width: 128px;
+  height: 30px;
+  border-radius: 50px;
+  border: 1.5px dashed #3a3a55;
+}
+
+.d2c-cta .final {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 14px;
+  border-radius: 50px;
+  background: $grad;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+// wire layers fade out and final layers fade in, one step at a time
+@for $i from 1 through length($step-starts) {
+  $s: nth($step-starts, $i);
+
+  @keyframes show-#{$i} {
+    0%, #{$s}% { opacity: 0; transform: scale(0.96); }
+    #{$s + 3}%, 92% { opacity: 1; transform: none; }
+    95%, 100% { opacity: 0; transform: none; }
+  }
+
+  @keyframes hide-#{$i} {
+    0%, #{$s}% { opacity: 1; }
+    #{$s + 3}%, 92% { opacity: 0; }
+    95%, 100% { opacity: 1; }
+  }
+
+  .s#{$i} > .final { animation: show-#{$i} $loop infinite; }
+  .s#{$i} > .wire { animation: hide-#{$i} $loop infinite; }
+}
+
+.status-text,
+.status .ok {
+  animation: show-6 $loop infinite;
+}
+
+// ─── Code editor ───
+.code {
+  margin: 0;
+  padding: 14px 16px 10px;
+  min-height: 186px;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  line-height: 1.75;
+  color: #d6d6e4;
+  background: #0e0e16;
+  overflow: hidden;
+}
+
+.ln {
+  display: block;
+  width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: pre;
+}
+
+.t { color: #f472b6; }   // tags
+.a { color: #4aaff1; }   // attributes
+.s { color: #a6e3a1; }   // strings
+.i { color: #ffd43b; }   // interpolation
+
+@for $i from 1 through length($line-starts) {
+  $s: nth($line-starts, $i);
+
+  @keyframes type-#{$i} {
+    0%, #{$s}% { width: 0; }
+    #{$s + 5}%, 92% { width: calc(var(--n) * 1ch); }
+    96%, 100% { width: 0; }
+  }
+
+  .l#{$i} {
+    animation: type-#{$i} $loop infinite;
+    animation-timing-function: steps(28, end);
+  }
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  padding: 0 14px;
+  border-top: 1px solid $line;
+  background: $bar;
+  font-size: 11px;
+  color: var(--text-secondary);
+
+  .ok {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #3cc37a;
+    box-shadow: 0 0 8px #3cc37a;
+  }
+}
+
+// ─── Toggle + connector ───
+.mode-toggle {
+  position: absolute;
+  // in the empty space right of the design card, above the code window
+  left: 435px;
+  top: 118px;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 170px;
+  padding: 4px;
+  border-radius: 50px;
+  background: rgba(26, 26, 46, 0.92);
+  border: 1px solid $line;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  transform: translate(-50%, -50%);
+
+  .opt {
+    position: relative;
+    z-index: 1;
+    padding: 6px 0;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .knob {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    border-radius: 50px;
+    background: $grad;
+    animation: knob $loop infinite ease-in-out;
+  }
+}
+
+// "Code" while lines type, "Design" while the card updates, alternating
+@keyframes knob {
+  0%, 2%    { transform: translateX(0); }
+  4%, 50%   { transform: translateX(100%); }
+  54%, 100% { transform: translateX(0); }
+}
+
+.link {
+  position: absolute;
+  left: 250px;
+  top: 140px;
+  width: 80px;
+  height: 100px;
+  overflow: visible;
+  z-index: 1;
+
+  path {
+    stroke: #5571ed;
+    stroke-width: 2;
+    stroke-dasharray: 5 6;
+    opacity: 0.7;
+  }
+
+  .link-dot {
+    fill: #4aaff1;
+    filter: drop-shadow(0 0 4px #4aaff1);
+  }
+}
+
+// ─── Sizes ───
+// small laptops: shrink the side-by-side scene to fit the half-width column
+@media (min-width: 992px) and (max-width: 1199px) {
+  .scene {
+    transform: scale(0.84);
+    transform-origin: center top;
+    margin-bottom: -70px;
+  }
+}
+
+// tablets (768-991) get the full-size scene under the text; small tablets shrink it a little
+@media (min-width: 576px) and (max-width: 767px) {
+  .scene {
+    transform: scale(0.92);
+    transform-origin: center top;
+    margin-bottom: -36px;
+  }
+}
+
+// phones: stack design card, toggle and code window
+@media (max-width: 575px) {
+  // the hero centres this with flexbox, which would size it to its content and make
+  // the card width change with each case study's text; always take the full width instead
+  :host {
+    width: 100%;
+  }
+
+  .scene {
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .win,
+  .mode-toggle {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+  }
+
+  .design-win,
+  .code-win {
+    width: 100%;
+  }
+
+  .design-win { order: 1; }
+  .mode-toggle {
+    order: 2;
+    align-self: center;
+    width: 150px;
+    transform: none;
+  }
+  .code-win { order: 3; }
+
+  .link { display: none; }
+
+  .win-canvas { padding: 12px; }
+
+  // wide phone card: use a taller 16:10 cover cropped from the centre so every
+  // thumbnail shows its title and screens (StripSense's design sits lower down)
+  .d2c-cover,
+  .d2c-cover .final {
+    height: auto;
+    aspect-ratio: 16 / 10;
+  }
+
+  .d2c-cover .final {
+    object-position: center;
+  }
+
+  .code {
+    min-height: 0;
+    padding: 12px 14px 8px;
+    font-size: 10.5px;
+  }
+
+  .tab {
+    font-size: 10px;
+  }
+}
+
+// Reduced motion: show the finished design and code, no movement
+@media (prefers-reduced-motion: reduce) {
+  .win, .knob, .ln, .d2c-card-bg, .wire-card, .final, .wire, .status-text, .status .ok {
+    animation: none !important;
+  }
+  .ln { width: calc(var(--n) * 1ch); }
+  .wire, .wire-card { opacity: 0; }
+  .link-dot { display: none; }
+}

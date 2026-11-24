@@ -71,7 +71,18 @@
   right: 24px;
   font-size: 2.5rem;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.03);
+  line-height: 1;
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  opacity: 0.3;
+  transition: opacity var(--transition);
+}
+
+.service-card:hover .card-number {
+  opacity: 0.8;
 }
 
 @media (max-width: 576px) {

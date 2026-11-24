@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TiltDirective } from '../../directives/tilt.directive';
+import { SITE_LINKS } from '../../site-links';
 
 interface Experience {
   company: string;
@@ -17,6 +18,8 @@ interface Experience {
   styleUrl: './experience.component.scss',
 })
 export class ExperienceComponent {
+  links = SITE_LINKS;
+
   experiences: Experience[] = [
     {
       company: 'Medical Electronic Systems',

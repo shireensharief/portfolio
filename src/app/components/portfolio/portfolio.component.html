@@ -6,7 +6,7 @@
         Featured <span class="highlight">Projects</span>
       </h2>
       <p class="section-subtitle mx-auto">
-        Six case studies from real products I designed. Client names and details are changed to keep them confidential.
+        Case studies from real products I designed, with client names and details changed for confidentiality, plus live WordPress sites I worked on.
       </p>
     </div>
 
@@ -29,9 +29,9 @@
           <ng-template #card>
             <div class="project-thumb">
               <img class="thumb-img" [src]="project.image" [alt]="project.title + ' case study'" loading="lazy" />
-              @if (project.dribbble) {
+              @if (project.url) {
                 <div class="project-overlay">
-                  <span class="view-btn">View on Dribbble <span aria-hidden="true">&nearr;</span></span>
+                  <span class="view-btn">{{ project.cta }} <span aria-hidden="true">&nearr;</span></span>
                 </div>
               } @else {
                 <span class="soon-badge">Coming soon to Dribbble</span>
@@ -43,9 +43,9 @@
               <p class="project-desc mb-0">{{ project.description }}</p>
             </div>
           </ng-template>
-          @if (project.dribbble) {
-            <a class="project-card is-link" [href]="project.dribbble" target="_blank" rel="noopener"
-               [attr.aria-label]="'Open the ' + project.title + ' case study on Dribbble'" appTilt>
+          @if (project.url) {
+            <a class="project-card is-link" [href]="project.url" target="_blank" rel="noopener"
+               [attr.aria-label]="project.cta + ': ' + project.title" appTilt>
               <ng-container [ngTemplateOutlet]="card" />
             </a>
           } @else {

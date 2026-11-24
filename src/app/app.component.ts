@@ -10,6 +10,7 @@ import { SkillsComponent } from './components/skills/skills.component';
 import { ExperienceComponent } from './components/experience/experience.component';
 import { ServicesComponent } from './components/services/services.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
+import { ProcessComponent } from './components/process/process.component';
 import { ContactComponent } from './components/contact/contact.component';
 
 declare const AOS: any;
@@ -23,6 +24,7 @@ declare const AOS: any;
     SkillsComponent,
     ExperienceComponent,
     ServicesComponent,
+    ProcessComponent,
     PortfolioComponent,
     ContactComponent,
     FooterComponent,
