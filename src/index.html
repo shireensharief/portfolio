@@ -7,6 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Shireen H, UI/UX Designer and UI Developer. Case studies of web and mobile products, from Figma wireframes to responsive Angular builds.">
   <meta name="theme-color" content="#0a0a0f">
+  <!-- Apply the saved light/dark choice before the page paints, so it never flashes the wrong theme -->
+  <script>
+    try {
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f6f7fb');
+      }
+    } catch (e) {}
+  </script>
 
   <!-- Link previews (LinkedIn, WhatsApp, Slack, X) -->
   <meta property="og:type" content="website">

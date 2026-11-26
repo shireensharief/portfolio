@@ -11,6 +11,7 @@ export class NavbarComponent {
   isScrolled = false;
   isMobileMenuOpen = false;
   activeSection = 'home';
+  isLight = false;
   private isBrowser: boolean;
 
   navLinks = [
@@ -27,6 +28,18 @@ export class NavbarComponent {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
+    // index.html already applied the saved choice before paint; just read it back
+    this.isLight = this.document.documentElement.getAttribute('data-theme') === 'light';
+  }
+
+  toggleTheme(): void {
+    this.isLight = !this.isLight;
+    const root = this.document.documentElement;
+    if (this.isLight) root.setAttribute('data-theme', 'light');
+    else root.removeAttribute('data-theme');
+    this.document.querySelector('meta[name="theme-color"]')
+      ?.setAttribute('content', this.isLight ? '#f6f7fb' : '#0a0a0f');
+    try { localStorage.setItem('theme', this.isLight ? 'light' : 'dark'); } catch { /* private mode: choice lasts this visit only */ }
   }
 
   @HostListener('window:scroll')

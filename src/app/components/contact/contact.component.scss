@@ -18,6 +18,32 @@
     border-color: rgba(85, 113, 237, 0.3);
     transform: translateX(4px);
   }
+
+  // no gap under the last card, so the column ends at its bottom edge
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Laptop and up: the fields stretch to the row height (set by the left column),
+// so the message box ends level with the last left card; the Send button sits
+// just below that line (taken out of the flow so it doesn't push the row taller).
+@media (min-width: 992px) {
+  .contact-form {
+    position: relative;
+    height: 100%;
+  }
+
+  .contact-form .submit-btn {
+    position: absolute;
+    left: 0;
+    top: calc(100% + 24px);
+  }
+
+  // keep the usual space under the section, now that the button hangs below the row
+  .contact {
+    padding-bottom: 200px;
+  }
 }
 
 .info-icon {
@@ -88,9 +114,26 @@
   }
 }
 
+// No drag handle; long messages scroll inside the box.
+// Laptop and up: the box fills whatever height is left, so it ends exactly
+// where the left column's last card ends. Phones/tablets: fixed height.
 textarea.form-control {
-  resize: vertical;
-  min-height: 140px;
+  resize: none;
+  height: 160px;
+  overflow-y: auto;
+
+  @media (min-width: 992px) {
+    flex: 1 1 0;
+    height: auto;
+    min-height: 80px;
+  }
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
+
+  &::-webkit-scrollbar { width: 6px; }
+  &::-webkit-scrollbar-track { background: transparent; }
+  &::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
 }
 
 .submit-btn {

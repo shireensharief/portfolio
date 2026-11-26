@@ -54,6 +54,41 @@
   object-fit: contain;
 }
 
+// Theme switch + hamburger sit together on the right
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 1000;
+
+  @media (min-width: 992px) {
+    margin-left: 0.5rem;
+  }
+}
+
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--text-primary);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition);
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  &:hover {
+    border-color: var(--accent);
+    color: var(--accent-light);
+    transform: rotate(-15deg);
+  }
+}
+
 // Hamburger
 .hamburger {
   display: flex;
@@ -121,6 +156,7 @@
   @media (min-width: 992px) {
     display: flex;
     align-items: center;
+    margin-left: auto;
   }
 
   @media (max-width: 991px) {

@@ -1,6 +1,9 @@
 .about {
   padding: 120px 0;
   background: var(--bg-primary);
+  // sit above the hero's pink glow where it spills into this section
+  position: relative;
+  z-index: 1;
 }
 
 .about-text {

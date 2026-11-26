@@ -40,6 +40,8 @@
   --accent: #5571ed;
   --accent-light: #4aaff1;
   --accent-glow: rgba(85, 113, 237, 0.3);
+  --accent-hover: #7cc4f5;
+  --grid-line: rgba(255, 255, 255, 0.03);
   --gradient-1: linear-gradient(135deg, #4aaff1, #5571ed, #d94cac 66%, #ed647d);
   --gradient-2: linear-gradient(135deg, #4aaff1, #5571ed, #d94cac 66%, #ed647d);
   --gradient-3: linear-gradient(135deg, #4aaff1, #5571ed, #d94cac 66%, #ed647d);
@@ -208,4 +210,77 @@ input, textarea {
 @keyframes shineMove {
   0% { left: -100%; }
   100% { left: 150%; }
+}
+
+// ─── Light theme ───────────────────────────────────────────
+// Dark is the default. The navbar switch sets <html data-theme="light">,
+// which swaps the colour tokens below; a few hard-coded dark surfaces are
+// overridden after that. The two app mockups (About desk, hero design-to-code
+// scene) stay dark on purpose, like real Figma / code windows.
+html[data-theme='light'] {
+  --bg-card: rgba(255, 255, 255, 0.8);
+  --bg-card-hover: #ffffff;
+  --text-primary: #14162b;
+  --text-secondary: #4b5070;
+  --text-muted: #868ba5;
+  --accent-light: #2b84d0;
+  --accent-glow: rgba(85, 113, 237, 0.16);
+  --accent-hover: #5571ed;
+  --grid-line: rgba(20, 22, 43, 0.035);
+  --border-color: #e2e5ef;
+  color-scheme: light;
+
+  body { background: #f6f7fb; }
+  ::-webkit-scrollbar-track { background: #f6f7fb; }
+
+  // keep the mockup windows dark
+  .desk,
+  app-design-to-code .scene {
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0b8;
+    --text-muted: #6b6b80;
+    --border-color: #232323;
+  }
+
+  // navbar
+  .navbar { background: rgba(255, 255, 255, 0.65); }
+  .navbar.scrolled { background: rgba(255, 255, 255, 0.92); }
+  .logo-img { filter: brightness(0) saturate(100%) invert(9%) sepia(16%) saturate(1900%) hue-rotate(205deg); }
+  @media (max-width: 991px) {
+    .nav-links { background: rgba(255, 255, 255, 0.98); }
+    .nav-overlay { background: rgba(20, 22, 43, 0.3); }
+  }
+
+  // hero
+  .btn-outline { border-color: rgba(20, 22, 43, 0.18); }
+
+  // cards: a soft shadow instead of the dark glow, so they lift off the light page
+  .service-card,
+  .project-card,
+  .timeline-card,
+  .skill-card,
+  .info-card,
+  .step-card,
+  .social-icon {
+    box-shadow: 0 6px 24px rgba(30, 40, 90, 0.06);
+  }
+  .service-card:hover,
+  .project-card:hover,
+  .timeline-card:hover {
+    box-shadow: 0 18px 44px rgba(30, 40, 90, 0.12);
+  }
+  .skill-card:hover {
+    box-shadow: 0 12px 30px rgba(85, 113, 237, 0.2);
+  }
+
+  // shine sweep reads as a highlight on light cards too
+  .timeline-card::after,
+  .info-card::after {
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0) 100%);
+  }
+
+  .project-thumb { background: #e9ecf4; }
+
+  // process icons sit in a ring cut out of the page colour
+  .step-icon { box-shadow: 0 0 0 8px #f6f7fb, 0 10px 30px var(--accent-glow); }
 }

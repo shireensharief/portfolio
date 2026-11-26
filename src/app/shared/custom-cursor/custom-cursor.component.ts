@@ -75,6 +75,12 @@ export class CustomCursorComponent implements OnInit, AfterViewInit, OnDestroy {
       this.boundMove = (e: MouseEvent) => {
         this.mouseX = e.clientX;
         this.mouseY = e.clientY;
+        // No trail over text fields: it gets in the way while typing
+        if (this.isTextField(e.target)) {
+          this.prevX = this.mouseX;
+          this.prevY = this.mouseY;
+          return;
+        }
 
         // Spawn particles based on movement speed (throttled)
         this.moveCounter++;
@@ -92,6 +98,7 @@ export class CustomCursorComponent implements OnInit, AfterViewInit, OnDestroy {
       };
 
       this.boundClick = (e: MouseEvent) => {
+        if (this.isTextField(e.target)) return;
         // Burst of particles on click
         for (let i = 0; i < 18; i++) {
           this.spawnParticle(e.clientX, e.clientY, true);
@@ -106,6 +113,12 @@ export class CustomCursorComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.animate();
     });
+  }
+
+  /** Inputs, textareas, selects and editable areas get a plain cursor, no particles. */
+  private isTextField(target: EventTarget | null): boolean {
+    return target instanceof Element
+      && !!target.closest('input, textarea, select, [contenteditable="true"]');
   }
 
   private resize(): void {
